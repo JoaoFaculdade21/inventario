@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  rarity   String // Commom, rare, epic, legendary
+  weight   Float
+  epicness Float
+  type     String // helmet, Armor, Boots, Necklace, Ring, Weapon
+  defense  Int?
+  damage   Int?
+
+  @@map("items")
+}
